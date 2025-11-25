@@ -1,0 +1,2721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Management: Social Issues, Human Population, and Environment</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Leaflet.js for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- AOS Animation library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- jQuery UI for sliders -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    
+    <style>
+        :root {
+            --primary: #116466;
+            --secondary: #2C3531;
+            --accent: #D9B08C;
+            --danger: #D1E8E2;
+            --warning: #FFCB9A;
+            --light: #D1E8E2;
+            --dark: #2C3531;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            width: 80px;
+            background: var(--primary);
+        }
+        
+        /* Header Styles */
+        .header {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link {
+            position: relative;
+            font-weight: 500;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile menu animation */
+        #mobile-menu {
+            transition: all 0.3s ease;
+        }
+        
+        /* Smooth scrolling for anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Adjust hero section to account for fixed header */
+        .hero {
+            padding-top: 80px; /* Height of the header */
+            min-height: calc(100vh - 80px);
+        }
+        
+        /* Hero Section Styles */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            background: linear-gradient(rgba(44, 53, 49, 0.9), rgba(17, 100, 102, 0.8)), url('https://cdn.pixabay.com/photo/2017/08/10/02/05/tiles-shapes-2617112_1280.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
+            padding: 1rem;
+        }
+        
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .disaster-icon {
+            position: absolute;
+            opacity: 0.15;
+            font-size: 2rem;
+            color: white;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.15;
+            }
+            90% {
+                opacity: 0.15;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Dashboard Section */
+        .dashboard {
+            padding: 5rem 2rem;
+            background-color: #f8f9fa;
+        }
+        
+        .map-container {
+            height: 500px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .chart-container {
+            height: 400px;
+            margin-bottom: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+        }
+        
+        /* Case Studies Section */
+        .case-studies {
+            padding: 5rem 2rem;
+            background-color: #fff;
+        }
+        
+        .timeline {
+            position: relative;
+            width: 100%;
+            overflow-x: auto;
+            padding: 2rem 0;
+        }
+        
+        .timeline-track {
+            display: flex;
+            gap: 2rem;
+            padding: 1rem 2rem;
+        }
+        
+        .case-card {
+            flex: 0 0 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .case-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+        
+        .case-detail {
+            padding: 1.5rem;
+            display: none;
+        }
+        
+        .case-detail.active {
+            display: block;
+        }
+        
+        .image-comparison {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .image-comparison img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .image-comparison .after {
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+        }
+        
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: white;
+            z-index: 10;
+            cursor: ew-resize;
+        }
+        
+        .slider-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            z-index: 11;
+            cursor: ew-resize;
+        }
+        
+        /* Animation Section */
+        .animation-section {
+            padding: 5rem 2rem;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        .animation-container {
+            width: 100%;
+            max-width: 1600px;
+            height: 400px;
+            position: relative;
+            margin: 2rem 0;
+            overflow: hidden;
+            border-radius: 10px;
+            background: rgb(219, 217, 217);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .animation-step {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        
+        .animation-step.active {
+            opacity: 1;
+        }
+        
+        /* Quiz Section */
+        .quiz-section {
+            padding: 5rem 2rem;
+            background-color: #fff;
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-options {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        .quiz-option {
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #f8f9fa;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover {
+            background: #e9ecef;
+        }
+        
+        .quiz-option.selected {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Tools Section */
+        .tools-section {
+            padding: 5rem 2rem;
+            background-color: #f8f9fa;
+        }
+        
+        .tool-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        /* Social Issues Gallery */
+        .gallery-section {
+            padding: 5rem 2rem;
+            background-color: #fff;
+        }
+        
+        .gallery-container {
+            display: flex;
+            overflow-x: auto;
+            padding: 2rem 0;
+            gap: 2rem;
+        }
+        
+        .gallery-item {
+            flex: 0 0 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .gallery-content {
+            padding: 1.5rem;
+        }
+        
+        /* Chatbot */
+        .chatbot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .chatbot-toggle {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .chatbot-container {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .chatbot-header {
+            background: var(--primary);
+            padding: 1rem;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .chatbot-input-container {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            display: flex;
+        }
+        
+        .chatbot-input {
+            flex: 1;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+        }
+        
+        .chatbot-send {
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+            max-width: 80%;
+        }
+        
+        .message.bot {
+            background: #f1f1f1;
+            padding: 0.75rem;
+            border-radius: 10px 10px 10px 0;
+            align-self: flex-start;
+        }
+        
+        .message.user {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 10px 10px 0 10px;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        /* Contact Section Styles */
+        .contact-section {
+            padding: 5rem 2rem;
+            background-color: #f8f9fa;
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        
+        .contact-info {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2C3531;
+        }
+        
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: #116466;
+            box-shadow: 0 0 0 2px rgba(17, 100, 102, 0.2);
+        }
+        
+        .form-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background: #116466;
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .submit-btn:hover {
+            background: #0d4f4f;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            background: #116466;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-text {
+            flex: 1;
+        }
+        
+        .contact-text h4 {
+            margin-bottom: 0.25rem;
+            color: #2C3531;
+        }
+        
+        .contact-text p {
+            color: #666;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #116466;
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #0d4f4f;
+            transform: translateY(-3px);
+        }
+        
+        .map-container-contact {
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Footer Styles */
+        .footer {
+            background: #2C3531;
+            color: white;
+            padding: 3rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 2px;
+            width: 40px;
+            background: #116466;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #D1E8E2;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #D1E8E2;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .chart-container, .map-container {
+                height: 300px;
+            }
+            
+            .tool-card {
+                margin-bottom: 2rem;
+            }
+            
+            .chatbot-container {
+                width: 300px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header bg-white shadow-md fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-primary">Disaster Management</h1>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#hero" class="nav-link text-gray-700 hover:text-primary transition duration-300">Home</a>
+                    <a href="#dashboard" class="nav-link text-gray-700 hover:text-primary transition duration-300">About</a>
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 hover:text-primary transition duration-300 flex items-center">
+                            Topics <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="#case-studies" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-green-500">Case Studies</a>
+                            <a href="#predictor" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-green-500">Risk Predictor</a>
+                            <a href="#animation" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-green-500">Relationships</a>
+                            <a href="#quiz" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-green-500">Quiz</a>
+                        </div>
+                    </div>
+                    <a href="#disaster-plan" class="nav-link text-gray-700 hover:text-primary transition duration-300">Planing</a>
+                    <a href="#gallery" class="nav-link text-gray-700 hover:text-primary transition duration-300">Resources</a>
+                    
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-primary transition duration-300">Contact</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden mt-4 hidden">
+                <div class="flex flex-col space-y-4">
+                    <a href="#hero" class="nav-link text-gray-700 hover:text-primary transition duration-300">Home</a>
+                    <a href="#dashboard" class="nav-link text-gray-700 hover:text-primary transition duration-300">About</a>
+                    <a href="#case-studies" class="nav-link text-gray-700 hover:text-primary transition duration-300">Case Studies</a>
+                    <a href="#predictor" class="nav-link text-gray-700 hover:text-primary transition duration-300">Risk Predictor</a>
+                    <a href="#animation" class="nav-link text-gray-700 hover:text-primary transition duration-300">Relationships</a>
+                    <a href="#quiz" class="nav-link text-gray-700 hover:text-primary transition duration-300">Quiz</a>
+                    <a href="#gallery" class="nav-link text-gray-700 hover:text-primary transition duration-300">Resources</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-primary transition duration-300">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="animated-bg" id="animated-bg"></div>
+        <div class="hero-content" data-aos="fade-up">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Disaster Management</h1>
+            <h2 class="text-xl md:text-3xl mb-6">Social Issues, Human Population, and Environment</h2>
+            <p class="text-lg mb-8">"Understanding the Risks. Preparing for Tomorrow."</p>
+            <a href="#dashboard" class="bg-accent text-dark hover:bg-opacity-90 px-8 py-3 rounded-full text-lg font-bold transition duration-300">Explore Case Studies</a>
+        </div>
+    </section>
+
+    <!-- Interactive Dashboard Section -->
+    <section class="dashboard" id="dashboard">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Interactive Disaster Impact Dashboard</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Chart 1: Population Growth vs Disaster Frequency -->
+                <div class="chart-container" data-aos="fade-up">
+                    <h3 class="text-xl font-semibold mb-4">Population Growth vs Disaster Frequency</h3>
+                    <canvas id="popVsDisasterChart"></canvas>
+                </div>
+                
+                <!-- Chart 2: Social Issues Heat Map -->
+                <div class="chart-container" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-semibold mb-4">Social Issues by State/District</h3>
+                    <div id="heatmapChart"></div>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4">Population Impact Simulator</h3>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+                    <div id="populationSlider"></div>
+                    <p class="mt-4 text-center"><span id="populationValue">50</span>% increase in population</p>
+                    <div class="mt-6 p-4 border border-red-200 rounded bg-red-50">
+                        <h4 class="font-semibold text-red-700 mb-2">Environmental Strain Effects:</h4>
+                        <ul class="list-disc pl-5" id="strainEffects">
+                            <li>Water resources depleted by 25%</li>
+                            <li>Deforestation increased by 30%</li>
+                            <li>Air quality reduced by 20%</li>
+                            <li>Risk of flooding increased by 15%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4">Disaster Map of India</h3>
+                <div class="map-container" id="indiaMap" data-aos="fade-up"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="case-studies" id="case-studies">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Immersive Case Study Explorer</h2>
+            
+            <div class="timeline">
+                <div class="timeline-track">
+                    <!-- Case Study Cards -->
+                    <div class="case-card" data-id="uttarakhand" data-aos="fade-up">
+                        <img src="uttrakhand.jpg" alt="Uttarakhand Floods">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl">Uttarakhand Floods (2013)</h3>
+                            <p class="text-gray-600">One of the worst natural disasters in India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card" data-id="vizag" data-aos="fade-up" data-aos-delay="100">
+                        <img src="vegas gas leak.webp" alt="Vizag Gas Leak">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl">Vizag Gas Leak (2020)</h3>
+                            <p class="text-gray-600">Industrial disaster affecting thousands</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card" data-id="bhopal" data-aos="fade-up" data-aos-delay="200">
+                        <img src="bhopal-gas-tragedy-1701511067.jpg" alt="Bhopal Gas Tragedy">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl">Bhopal Gas Tragedy (1984)</h3>
+                            <p class="text-gray-600">World's worst industrial disaster</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card" data-id="kerala" data-aos="fade-up" data-aos-delay="300">
+                        <img src="FL25KERALAFLOOD.webp" alt="Kerala Floods">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl">Kerala Floods (2018)</h3>
+                            <p class="text-gray-600">Devastating floods affecting millions</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card" data-id="delhi" data-aos="fade-up" data-aos-delay="400">
+                        <img src="Winter-air-pollution-in-New-Delhi-Suraj-Singh-Bisht-696x392.jpg-e1762764963130.avif"Delhi Air Pollution">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl">Delhi Air Pollution Crisis</h3>
+                            <p class="text-gray-600">Ongoing environmental emergency</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Case Study Details -->
+            <div class="mt-10 bg-white p-6 rounded-lg shadow-md hidden" id="case-details">
+                <button class="back-to-timeline mb-4 flex items-center text-primary hover:underline">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to all case studies
+                </button>
+                
+                <h3 class="text-2xl font-bold mb-4" id="case-title"></h3>
+                
+                <div class="image-comparison mb-6">
+                    <img class="before" id="image-before" src="" alt="Before">
+                    <img class="after" id="image-after" src="" alt="After">
+                    <div class="slider-handle">
+                        <div class="slider-button">
+                            <i class="fas fa-arrows-alt-h"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-tabs flex border-b mb-6">
+                    <button class="case-tab px-4 py-2 border-b-2 border-primary" data-tab="causes">Causes</button>
+                    <button class="case-tab px-4 py-2" data-tab="social">Social Impact</button>
+                    <button class="case-tab px-4 py-2" data-tab="environmental">Environmental Impact</button>
+                    <button class="case-tab px-4 py-2" data-tab="lessons">Lessons Learnt</button>
+                    <button class="case-tab px-4 py-2" data-tab="prevention">Prevention Strategy</button>
+                </div>
+                
+                <div class="case-content">
+                    <div class="case-detail active" id="causes-content"></div>
+                    <div class="case-detail" id="social-content"></div>
+                    <div class="case-detail" id="environmental-content"></div>
+                    <div class="case-detail" id="lessons-content"></div>
+                    <div class="case-detail" id="prevention-content"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disaster Predictor Mini-App -->
+    <section class="tools-section" id="predictor">
+        <div class="container mx-auto">
+            <h2 class="section-title text-3xl text-dark">Disaster Predictor Mini-App</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div data-aos="fade-right">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Predict Disaster Risk Based on Factors</h3>
+                        <p class="mb-6 text-gray-600">Input environmental and social factors to see potential disaster risks in your area.</p>
+                        
+                        <form id="predictorForm">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Population Density</label>
+                                <select class="w-full p-2 border rounded" name="population" required>
+                                    <option value="">Select density level</option>
+                                    <option value="low">Low (Rural Areas)</option>
+                                    <option value="medium">Medium (Suburban)</option>
+                                    <option value="high">High (Urban)</option>
+                                    <option value="very-high">Very High (Metropolitan)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Deforestation Level</label>
+                                <select class="w-full p-2 border rounded" name="deforestation" required>
+                                    <option value="">Select deforestation level</option>
+                                    <option value="minimal">Minimal</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="severe">Severe</option>
+                                    <option value="critical">Critical</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Urbanisation Rate</label>
+                                <select class="w-full p-2 border rounded" name="urbanisation" required>
+                                    <option value="">Select urbanisation rate</option>
+                                    <option value="slow">Slow</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="rapid">Rapid</option>
+                                    <option value="explosive">Explosive Growth</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Climate Change Impact</label>
+                                <select class="w-full p-2 border rounded" name="climateChange" required>
+                                    <option value="">Select impact level</option>
+                                    <option value="minimal">Minimal</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="significant">Significant</option>
+                                    <option value="severe">Severe</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-green-700 font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 ">
+    PREDICT RISK
+</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Prediction Results</h3>
+                        <div id="predictionResult" class="min-h-[300px] flex items-center justify-center">
+                            <p class="text-gray-500 text-center">Fill the form to see disaster risk prediction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environment-Population-Social Issue Relationship Animation -->
+    <section class="animation-section" id="animation">
+        <div class="container mx-auto text-center">
+            <h2 class="section-title mx-auto text-5xl text-dark">Environment–Population–Social Issue Relationship </h2>
+            <p class="mb-8 text-gray-600 max-w-3xl mx-auto">Watch how environmental changes trigger a cascade of effects on population and social issues</p>
+            
+            <div class="animation-container" data-aos="fade-up">
+                <div class="animation-step active" id="step1">
+                    <i class="fas fa-tree text-8xl mb-4 text-green-600"></i>
+                    <h3 class="text-5xl font-bold ">Deforestation Increases</h3>
+                    <p class="mt-4 text-xl">Human activities lead to widespread forest loss</p>
+                </div>
+                
+                <div class="animation-step" id="step2">
+                    <i class="fas fa-temperature-high text-8xl mb-4 text-red-500"></i>
+                    <h3 class="text-5xl font-bold">Temperature Increases</h3>
+                    <p class="mt-4 text-xl">Loss of tree cover causes local temperature to rise</p>
+                </div>
+                
+                <div class="animation-step" id="step3">
+                    <i class="fas fa-fire text-8xl mb-4 text-orange-500"></i>
+                    <h3 class="text-5xl font-bold">Wildfires Increase</h3>
+                    <p class="mt-4 text-xl">Higher temperatures and dry conditions lead to more frequent fires</p>
+                </div>
+                
+                <div class="animation-step" id="step4">
+                    <i class="fas fa-people-arrows text-8xl mb-4 text-blue-500"></i>
+                    <h3 class="text-5xl font-bold">Migration Increases</h3>
+                    <p class="mt-4 text-xl">People are forced to relocate due to uninhabitable conditions</p>
+                </div>
+                
+                <div class="animation-step" id="step5">
+                    <i class="fas fa-house-damage text-8xl mb-4 text-gray-700"></i>
+                    <h3 class="text-5xl font-bold">Social Issues Increase</h3>
+                    <p class="mt-4 text-xl">Poverty, unemployment, and resource conflicts worsen</p>
+                </div>
+            </div>
+            
+            <div class="mt-6">
+                <button id="play-animation" class="bg-blue-300 text-Red-700  font-bold py-2 px-6 rounded-full hover:bg-gray-400 transition duration-300 ml-4">Play Animation</button>
+                <button id="pause-animation" class="bg-gray-300 text-gray-700 py-2 px-6 rounded-full hover:bg-gray-400 transition duration-300 ml-4">Pause</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section" id="quiz">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Test Your Knowledge</h2>
+            <p class="mb-8 text-gray-600">Challenge yourself with this quiz on disasters, social issues, and environmental impacts</p>
+            
+            <div class="quiz-container" data-aos="fade-up">
+                <div id="quiz-start" class="text-center py-8">
+                    <i class="fas fa-question-circle text-6xl text-primary mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Disaster Management Quiz</h3>
+                    <p class="mb-6">This quiz contains questions about disaster types, social issues, and human activities that affect our environment.</p>
+                    <button id="start-quiz" class="bg-primary text-Red-700 font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition duration-300">Start Quiz</button>
+                </div>
+                
+                <div id="quiz-questions" class="hidden">
+                    <div class="flex justify-between mb-6">
+                        <div class="quiz-progress">
+                            Question <span id="current-question">1</span> of <span id="total-questions">10</span>
+                        </div>
+                        <div class="quiz-timer text-primary font-semibold">
+                            Time: <span id="timer">30</span>s
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <h3 id="question-text" class="text-xl font-semibold mb-4"></h3>
+                        <ul class="quiz-options" id="options-list"></ul>
+                    </div>
+                    
+                    <button id="next-question" class="mt-6 bg-primary text-blue-600 font-bold py-2 px-6 rounded hover:bg-opacity-90 transition duration-300 disabled:opacity-50" disabled>Next Question</button>
+                </div>
+                
+                <div id="quiz-result" class="hidden text-center py-8">
+                    <i class="fas fa-award text-6xl text-primary mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Quiz Completed!</h3>
+                    <p class="text-xl mb-4">Your Score: <span id="score">0</span>/<span id="total-score">0</span></p>
+                    <div class="certificate-container border-4 border-primary p-6 mx-auto max-w-md mb-6">
+                        <h3 class="text-2xl font-bold mb-2 ">Certificate of Completion</h3>
+                        <p class="mb-1">This certifies that</p>
+                        <p class="text-xl font-bold mb-1" id="user-name">You</p>
+                        <p class="mb-1">has successfully completed the</p>
+                        <p class="text-lg font-bold mb-3">Disaster Management Knowledge Quiz</p>
+                        <p class="mb-1">with a score of</p>
+                        <p class="text-xl font-bold" id="certificate-score">0/0</p>
+                    </div>
+                    <button id="restart-quiz" class="bg-primary text-green-700 font-bold py-2 px-6 rounded hover:bg-opacity-90 transition duration-300">Restart Quiz</button>
+                    <button id="download-certificate" class="bg-accent text-dark py-2 px-6 rounded hover:bg-opacity-90 transition duration-300 ml-2">Download Certificate</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Build Your Own Disaster Plan -->
+    <section class="tools-section bg-white" id="disaster-plan">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Build Your Own Disaster Plan</h2>
+            <p class="mb-8 text-gray-600">Create a customized emergency plan based on your specific situation</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div data-aos="fade-right">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Customize Your Emergency Plan</h3>
+                        <form id="planForm">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Location Type</label>
+                                <select class="w-full p-2 border rounded" name="locationType" required>
+                                    <option value="">Select your location</option>
+                                    <option value="urban">Urban</option>
+                                    <option value="suburban">Suburban</option>
+                                    <option value="rural">Rural</option>
+                                    <option value="coastal">Coastal</option>
+                                    <option value="mountainous">Mountainous</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Family Size</label>
+                                <select class="w-full p-2 border rounded" name="familySize" required>
+                                    <option value="">Select family size</option>
+                                    <option value="1-2">1-2 People</option>
+                                    <option value="3-4">3-4 People</option>
+                                    <option value="5-6">5-6 People</option>
+                                    <option value="7+">7+ People</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Special Considerations</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="considerations" value="elderly" class="mr-2">
+                                        Elderly
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="considerations" value="children" class="mr-2">
+                                        Young Children
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="considerations" value="pets" class="mr-2">
+                                        Pets
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="considerations" value="medical" class="mr-2">
+                                        Medical Needs
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Disaster Type</label>
+                                <select class="w-full p-2 border rounded" name="disasterType" required>
+                                    <option value="">Select disaster type</option>
+                                    <option value="flood">Flood</option>
+                                    <option value="earthquake">Earthquake</option>
+                                    <option value="cyclone">Cyclone/Hurricane</option>
+                                    <option value="fire">Fire</option>
+                                    <option value="drought">Drought</option>
+                                    <option value="industrial">Industrial Disaster</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-green-500 font-bold py-2 px-4 rounded  text-xl hover:bg-opacity-90 transition duration-300">Generate Plan</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Your Personalized Disaster Plan</h3>
+                        <div id="planResult" class="min-h-[300px]">
+                            <div class="flex items-center justify-center h-full">
+                                <p class="text-gray-500 text-center">Fill the form to generate your personalized disaster plan</p>
+                            </div>
+                        </div>
+                        <button id="savePlan" class="w-full mt-4 bg-accent text-dark py-2 px-4 rounded hover:bg-opacity-90 transition duration-300 hidden">Save Plan to Device</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carbon Footprint Calculator -->
+    <section class="tools-section" id="carbon-calculator">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Carbon Footprint Calculator</h2>
+            <p class="mb-8 text-gray-600">Measure your impact on the environment and learn how to reduce it</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div data-aos="fade-right">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Calculate Your Carbon Footprint</h3>
+                        <form id="carbonForm">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Transportation (daily average)</label>
+                                <select class="w-full p-2 border rounded" name="transportation" required>
+                                    <option value="">Select option</option>
+                                    <option value="car">Personal Car (>20km)</option>
+                                    <option value="carShort">Personal Car (<20km)</option>
+                                    <option value="publicTransport">Public Transportation</option>
+                                    <option value="carpool">Carpool/Rideshare</option>
+                                    <option value="bike">Bicycle/Walking</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Diet</label>
+                                <select class="w-full p-2 border rounded" name="diet" required>
+                                    <option value="">Select option</option>
+                                    <option value="meatHeavy">Meat in most meals</option>
+                                    <option value="meatModerate">Meat a few times a week</option>
+                                    <option value="vegetarian">Vegetarian</option>
+                                    <option value="vegan">Vegan</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Home Energy Consumption</label>
+                                <select class="w-full p-2 border rounded" name="energy" required>
+                                    <option value="">Select option</option>
+                                    <option value="high">High (Large home, A/C, many appliances)</option>
+                                    <option value="medium">Medium (Average home and usage)</option>
+                                    <option value="low">Low (Small home, energy-efficient)</option>
+                                    <option value="renewable">Primarily renewable energy</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Waste Generation</label>
+                                <select class="w-full p-2 border rounded" name="waste" required>
+                                    <option value="">Select option</option>
+                                    <option value="high">High (Limited recycling)</option>
+                                    <option value="medium">Medium (Some recycling)</option>
+                                    <option value="low">Low (Active recycling and composting)</option>
+                                    <option value="minimal">Minimal (Zero-waste lifestyle)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Air Travel (yearly)</label>
+                                <select class="w-full p-2 border rounded" name="airTravel" required>
+                                    <option value="">Select option</option>
+                                    <option value="frequent">Frequent (4+ flights/year)</option>
+                                    <option value="occasional">Occasional (1-3 flights/year)</option>
+                                    <option value="rare">Rare (Less than 1 flight/year)</option>
+                                    <option value="none">None</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-Red-700 text-xl font-bold py-2 px-4 rounded hover:bg-opacity-90 transition duration-300">Calculate</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Your Carbon Footprint Results</h3>
+                        <div id="carbonResult" class="min-h-[300px]">
+                            <div class="flex items-center justify-center h-full">
+                                <p class="text-gray-500 text-center">Fill the form to calculate your carbon footprint</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Issues Gallery -->
+    <section class="gallery-section" id="gallery">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Social Issues Gallery</h2>
+            <p class="mb-8 text-gray-600">Explore how social issues impact disaster vulnerability and recovery</p>
+            
+            <div class="gallery-container">
+                <!-- Poverty -->
+                <div class="gallery-item" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1635929114944-8bab23b98e74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxfHxQb3ZlcnR5fGVufDB8fHx8MTc2MzM5MzAzOHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Poverty">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Poverty</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Unequal resource distribution, lack of education & economic opportunities</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Heightened vulnerability to disasters due to unsafe housing, limited resources for evacuation</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Social safety nets, inclusive economic growth, community empowerment</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pollution -->
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1495556650867-99590cea3657?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxM3x8UG9sbHV0aW9ufGVufDB8fHx8MTc2MzM5MzA3N3ww&ixlib=rb-4.1.0&q=80&w=1080" alt="Pollution">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Pollution</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Industrial emissions, vehicular exhaust, improper waste disposal</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Respiratory diseases, contaminated water sources, ecosystem damage</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Stringent regulations, clean technology adoption, waste management</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Water Scarcity -->
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1571437436752-b39c74e5c501?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwzMnx8V2F0ZXIlMjBTY2FyY2l0eXxlbnwwfHx8fDE3NjMzOTMxMjF8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Water Scarcity">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Water Scarcity</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Climate change, overuse of groundwater, mismanagement of resources</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Crop failures, health crises, migration, conflicts over resources</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Water conservation, rainwater harvesting, sustainable agriculture</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slum Population -->
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1592715833087-52fd556efb3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHw0fHxTbHVtJTIwUG9wdWxhdGlvbnxlbnwwfHx8fDE3NjMzOTMxNjl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Slum Population">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Slum Population</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Rapid urbanization, housing shortages, rural-urban migration</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Increased risk from fires, floods, diseases; lack of emergency services</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Affordable housing, urban planning, slum upgradation projects</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Overcrowding -->
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1609056615012-27c81a0df7b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwyNHx8T3ZlcmNyb3dkaW5nfGVufDB8fHx8MTc2MzM5MzE0OXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Overcrowding">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Overcrowding</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Population growth, limited living spaces, economic inequality</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Rapid disease spread, difficult evacuations, strain on infrastructure</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Family planning, decentralized development, infrastructure investment</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Waste Mismanagement -->
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
+                    <img src="https://images.unsplash.com/photo-1762805544167-cd8d12553e2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHw2fHxXYXN0ZSUyME1pc21hbmFnZW1lbnR8ZW58MHx8fHwxNzYzMzkzMTgyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Waste Mismanagement">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Waste Mismanagement</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Lack of waste processing facilities, consumer culture, poor regulations</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Water pollution, disease outbreaks, blocked drainage leading to floods</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Recycling programs, waste-to-energy plants, circular economy models</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title text-5xl text-dark text-center" data-aos="fade-up">Contact Us</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Have questions or need assistance? Get in touch with our disaster management experts.</p>
+            
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form" data-aos="fade-right">
+                    <h3 class="text-xl font-semibold mb-6 text-dark">Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Your Name</label>
+                            <input type="text" id="name" class="form-input" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="email">Your Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="inquiryType">Inquiry Type</label>
+                            <select id="inquiryType" class="form-select">
+                                <option value="feedback">Feedback</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea id="message" class="form-textarea" placeholder="Type your message here..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane mr-2"></i> SEND MESSAGE
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="contact-info" data-aos="fade-left">
+                    <h3 class="text-xl font-semibold mb-6 text-dark">Contact Information</h3>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Our Location</h4>
+                                <p>123 Disaster Management Centre, madhuban chowk, near tecnia institute of advance studies delhi-110023</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                           
+                            <div class="contact-text">
+                                <h4>Phone Number</h4>
+                                <p>+91 9868502992</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email Address</h4>
+                                <p>info@disastermanagement.org</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h4 class="form-label mb-4">Follow Us</h4>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>DisasterMgmt</h3>
+                <p class="text-gray-300 mt-4">A comprehensive resource for understanding disasters, their impact on society, and measures for preparedness and prevention.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#disasters">Disasters</a></li>
+                    <li><a href="#social-issues">Social Issues</a></li>
+                    <li><a href="#environment">Environment</a></li>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#quiz">Survival Quiz</a></li>
+                    <li><a href="#gallery">Study Materials</a></li>
+                    <li><a href="#">Emergency Contacts</a></li>
+                    <li><a href="#">Download App</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Subscribe</h3>
+                <p class="text-gray-300 mt-4 mb-4">Stay updated with our latest resources and disaster alerts.</p>
+                <form class="flex">
+                    <input type="email" placeholder="Your email" class="px-4 py-2 w-full focus:outline-none rounded-l-lg">
+                    <button type="submit" class="bg-primary text-white px-4 rounded-r-lg hover:bg-opacity-90 transition-colors">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Disaster Management. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot">
+        <div class="chatbot-toggle">
+            <i class="fas fa-comment"></i>
+        </div>
+        <div class="chatbot-container">
+            <div class="chatbot-header">
+                Disaster Management Assistant
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot">
+                    Hello! I'm your Disaster Management Assistant. How can I help you today? Try asking me about what to do during an earthquake or how population growth affects the environment.
+                </div>
+            </div>
+            <div class="chatbot-input-container">
+                <input type="text" class="chatbot-input" placeholder="Type your question here...">
+                <button class="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Mobile Menu Functionality
+        function initMobileMenu() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.contains(event.target) && !mobileMenuButton.contains(event.target)) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        }
+
+        // Hero section animated background
+        function createDisasterIcons() {
+            const bgElement = document.getElementById('animated-bg');
+            const icons = ['fa-fire', 'fa-water', 'fa-wind', 'fa-cloud-showers-heavy', 
+                         'fa-house-damage', 'fa-temperature-high', 'fa-smog', 'fa-biohazard'];
+            const iconCount = 15;
+            
+            for(let i = 0; i < iconCount; i++) {
+                const icon = document.createElement('i');
+                const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+                icon.className = `fas ${randomIcon} disaster-icon`;
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.top = `${Math.random() * 100}%`;
+                icon.style.animationDuration = `${10 + Math.random() * 20}s`;
+                icon.style.animationDelay = `${Math.random() * 5}s`;
+                bgElement.appendChild(icon);
+            }
+        }
+        createDisasterIcons();
+
+        // Interactive Dashboard Charts
+        function initDashboardCharts() {
+            // Population vs Disaster Chart
+            const popVsDisasterCtx = document.getElementById('popVsDisasterChart').getContext('2d');
+            const popVsDisasterChart = new Chart(popVsDisasterCtx, {
+                type: 'line',
+                data: {
+                    labels: ['1970', '1980', '1990', '2000', '2010', '2020'],
+                    datasets: [
+                        {
+                            label: 'Population (Billions)',
+                            data: [0.55, 0.7, 0.85, 1.05, 1.2, 1.38],
+                            borderColor: '#116466',
+                            backgroundColor: 'rgba(17, 100, 102, 0.1)',
+                            borderWidth: 3,
+                            fill: true
+                        },
+                        {
+                            label: 'Disaster Frequency (per decade)',
+                            data: [50, 80, 120, 190, 250, 310],
+                            borderColor: '#D9B08C',
+                            backgroundColor: 'rgba(217, 176, 140, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            yAxisID: 'y1'
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    scales: {
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            title: {
+                                display: true,
+                                text: 'Population (Billions)'
+                            }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            title: {
+                                display: true,
+                                text: 'Disaster Frequency'
+                            },
+                            grid: {
+                                drawOnChartArea: false,
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Heatmap Chart with ApexCharts
+            const heatmapData = [
+                {
+                    name: 'Poverty',
+                    data: generateHeatMapData([5, 7, 9, 4, 6, 8, 3])
+                },
+                {
+                    name: 'Pollution',
+                    data: generateHeatMapData([8, 5, 3, 7, 9, 4, 6])
+                },
+                {
+                    name: 'Water Scarcity',
+                    data: generateHeatMapData([6, 9, 7, 5, 3, 8, 4])
+                },
+                {
+                    name: 'Migration',
+                    data: generateHeatMapData([4, 6, 8, 5, 7, 3, 9])
+                }
+            ];
+            
+            const heatmapOptions = {
+                series: heatmapData,
+                chart: {
+                    height: 300,
+                    type: 'heatmap',
+                },
+                dataLabels: {
+                    enabled: false
+                },
+                colors: ["#116466"],
+                title: {
+                    text: 'Social Issues by State/Region'
+                },
+                xaxis: {
+                    categories: ['Maharashtra', 'Kerala', 'Delhi', 'Tamil Nadu', 'Gujarat', 'Uttar Pradesh', 'West Bengal']
+                },
+                plotOptions: {
+                    heatmap: {
+                        shadeIntensity: 0.5,
+                        colorScale: {
+                            ranges: [
+                                { from: 0, to: 3, color: '#D1E8E2', name: 'Low' },
+                                { from: 4, to: 6, color: '#FFCB9A', name: 'Medium' },
+                                { from: 7, to: 10, color: '#c23d35', name: 'High' }
+                            ]
+                        }
+                    }
+                }
+            };
+            
+            const heatmapChart = new ApexCharts(document.getElementById("heatmapChart"), heatmapOptions);
+            heatmapChart.render();
+        }
+
+        function generateHeatMapData(baseValues) {
+            return baseValues.map((value, index) => {
+                return { x: index, y: value };
+            });
+        }
+
+        // Initialize Population Slider
+        function initPopulationSlider() {
+            $("#populationSlider").slider({
+                min: 0,
+                max: 100,
+                value: 50,
+                slide: function(event, ui) {
+                    $("#populationValue").text(ui.value);
+                    updateStrainEffects(ui.value);
+                }
+            });
+        }
+
+        function updateStrainEffects(value) {
+            const effects = [
+                `Water resources depleted by ${Math.round(value/2)}%`,
+                `Deforestation increased by ${Math.round(value*0.6)}%`,
+                `Air quality reduced by ${Math.round(value*0.4)}%`,
+                `Risk of flooding increased by ${Math.round(value*0.3)}%`
+            ];
+            
+            if (value > 80) {
+                effects.push(`Urban heat islands temperature increased by ${Math.round(value*0.15)}°C`);
+            }
+            
+            const strainList = document.getElementById('strainEffects');
+            strainList.innerHTML = effects.map(effect => `<li>${effect}</li>`).join('');
+        }
+
+        // India Map
+        function initIndiaMap() {
+            const map = L.map('indiaMap').setView([22.5937, 78.9629], 5);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Add disaster markers
+            const disasters = [
+                { name: "Uttarakhand Floods (2013)", lat: 30.0668, lng: 79.0193, type: "flood" },
+                { name: "Vizag Gas Leak (2020)", lat: 17.7224, lng: 83.3013, type: "industrial" },
+                { name: "Bhopal Gas Tragedy (1984)", lat: 23.2599, lng: 77.4126, type: "industrial" },
+                { name: "Kerala Floods (2018)", lat: 10.1632, lng: 76.6413, type: "flood" },
+                { name: "Delhi Air Pollution Crisis", lat: 28.7041, lng: 77.1025, type: "pollution" },
+                { name: "Gujarat Earthquake (2001)", lat: 23.2156, lng: 69.6695, type: "earthquake" },
+                { name: "Cyclone Fani (2019)", lat: 19.7515, lng: 85.8245, type: "cyclone" }
+            ];
+            
+            disasters.forEach(disaster => {
+                let icon = 'fa-water';
+                let color = 'blue';
+                
+                if (disaster.type === 'industrial') {
+                    icon = 'fa-industry';
+                    color = 'purple';
+                } else if (disaster.type === 'pollution') {
+                    icon = 'fa-smog';
+                    color = 'gray';
+                } else if (disaster.type === 'earthquake') {
+                    icon = 'fa-house-damage';
+                    color = 'red';
+                } else if (disaster.type === 'cyclone') {
+                    icon = 'fa-wind';
+                    color = 'green';
+                }
+                
+                const customIcon = L.divIcon({
+                    html: `<i class="fas ${icon}" style="color: ${color}; font-size: 24px;"></i>`,
+                    className: 'disaster-map-icon',
+                    iconSize: [30, 30],
+                    iconAnchor: [15, 15]
+                });
+                
+                const marker = L.marker([disaster.lat, disaster.lng], { icon: customIcon }).addTo(map);
+                marker.bindPopup(`
+                    <strong>${disaster.name}</strong><br>
+                    <button class="disaster-info-btn px-2 py-1 bg-primary text-yellow text-sm rounded mt-2" 
+                    data-disaster="${disaster.name.replace(/\s/g, '')}">View Details</button>
+                `);
+                
+                marker.on('popupopen', function() {
+                    document.querySelectorAll('.disaster-info-btn').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            showDisasterInfo(this.getAttribute('data-disaster'));
+                        });
+                    });
+                });
+            });
+        }
+
+        function showDisasterInfo(disasterId) {
+            // This would be connected to a real API in the future
+            // For now we'll just show a sample modal with info
+            alert("This feature will show detailed information about " + disasterId.replace(/([A-Z])/g, ' $1').trim() + " in the full version.");
+        }
+
+        // Case Studies
+        function initCaseStudies() {
+            const caseCards = document.querySelectorAll('.case-card');
+            const caseDetails = document.getElementById('case-details');
+            const backButton = document.querySelector('.back-to-timeline');
+            
+            // Case study data (would come from API in real version)
+            const caseStudyData = {
+                uttarakhand: {
+                    title: "Uttarakhand Floods (2013)",
+                    beforeImage: "beforeu.png",
+                    afterImage: "afteru.webp",
+                    causes: "The Uttarakhand floods were caused by excessive rainfall, cloudbursts, and accelerated snowmelt. Human factors including deforestation, poorly planned hydroelectric projects, and unregulated construction along riverbanks amplified the disaster's impact.",
+                    social: "Over 5,700 people died or went missing. Thousands of villages were affected, with many completely washed away. The tourism industry collapsed, causing widespread unemployment. Many survivors faced trauma, homelessness, and disrupted livelihoods.",
+                    environmental: "Massive landslides altered river courses. Silt deposits changed river ecology. Wildlife habitats were destroyed. Water sources were contaminated with debris and bodies.",
+                    lessons: "Himalayan ecosystems are fragile and require careful management. Early warning systems and disaster preparedness are essential. Unplanned development in ecologically sensitive zones can have catastrophic consequences.",
+                    prevention: "Implementing strict regulations on construction in flood plains. Developing advanced early warning systems. Maintaining natural forests as flood barriers. Regular disaster drills and community preparedness programs."
+                },
+                vizag: {
+                    title: "Vizag Gas Leak (2020)",
+                    beforeImage: "beforev.webp",
+                    afterImage: "afterv.png",
+                    causes: "Styrene gas leaked from an LG Polymers plant. The leak occurred after long-term storage during COVID-19 lockdown without proper maintenance. Temperature control systems failed, causing the stored chemical to heat and vaporize.",
+                    social: "At least 11 people died and over 1,000 were hospitalized. Surrounding villages were evacuated. Many survivors experienced long-term respiratory issues. Trust in industrial safety was severely damaged.",
+                    environmental: "Air and water pollution affected a large area. Crops were damaged. Soil contamination occurred in surrounding agricultural lands. Many animals and livestock died from exposure.",
+                    lessons: "Industrial facilities must maintain safety protocols even during shutdowns. Buffer zones between industrial and residential areas are essential. Emergency response plans must include nearby communities.",
+                    prevention: "Regular safety audits and maintenance. Proper hazard assessment and risk management. Community awareness programs and evacuation drills. Strict enforcement of environmental regulations."
+                },
+                bhopal: {
+                    title: "Bhopal Gas Tragedy (1984)",
+                    beforeImage: "beforeb.webp",
+                    afterImage: "bhopal-gas-tragedy-1701511067.jpg",
+                    causes: "Water entered a methyl isocyanate (MIC) storage tank at the Union Carbide pesticide plant, causing an exothermic reaction. Safety systems were inadequate or non-functional. Poor maintenance and cost-cutting contributed to the disaster.",
+                    social: "Over 3,787 confirmed deaths, with estimates up to 16,000. 558,125 injuries including permanent disabilities. Generations continue to suffer from birth defects and chronic diseases. Survivors faced stigma and economic hardship.",
+                    environmental: "Soil and groundwater contamination persists decades later. The surrounding ecosystem was devastated. Chemical waste remains unremediated at the factory site.",
+                    lessons: "Industrial safety cannot be compromised for profit. Proper emergency response systems must be maintained. Urban planning must separate industrial and residential zones. Corporate accountability is essential in hazardous industries.",
+                    prevention: "Stringent industrial safety regulations and regular inspections. Corporate liability for environmental damage. Community right-to-know laws about chemical hazards. Emergency preparedness training for vulnerable communities."
+                },
+                kerala: {
+                    title: "Kerala Floods (2018)",
+                    beforeImage: "beforek.jpg",
+                    afterImage: "FL25KERALAFLOOD.webp",
+                    causes: "Unusually high rainfall during monsoon season. Simultaneous opening of all major dam reservoirs. Deforestation and loss of wetlands reduced natural flood protection. Climate change contributed to extreme weather patterns.",
+                    social: "483 people died. Over 14 lakh people were displaced to relief camps. Infrastructure damage exceeded ₹40,000 crore. Tourism and agriculture sectors were severely impacted.",
+                    environmental: "Landslides damaged Western Ghats ecosystems. Water contamination caused widespread disease risk. Soil erosion and siltation affected farmland fertility. Native species habitats were destroyed.",
+                    lessons: "Coordinated reservoir management is crucial. Natural flood buffers like wetlands must be preserved. Climate change adaptation must be part of disaster planning. Community-based early warning systems save lives.",
+                    prevention: "Integrated watershed management. Restoring wetlands and natural drainage systems. Climate-resilient infrastructure development. Community-based disaster response networks."
+                },
+                delhi: {
+                    title: "Delhi Air Pollution Crisis",
+                    beforeImage: "befored.webp",
+                    afterImage: "Winter-air-pollution-in-New-Delhi-Suraj-Singh-Bisht-696x392.jpg-e1762764963130.avif",
+                    causes: "Vehicle emissions and industrial pollution. Stubble burning in surrounding agricultural states. Construction dust and thermal power plants. Geographic factors that trap pollutants during winter months.",
+                    social: "Respiratory diseases affect millions. School closures during severe episodes. Productivity losses estimated at billions of rupees annually. Disproportionate impact on outdoor workers and economically disadvantaged communities.",
+                    environmental: "Decreased visibility and smog formation. Acid rain affecting historical monuments. Reduced photosynthesis in plants. Ecosystem disruption affecting urban biodiversity.",
+                    lessons: "Air pollution requires regional cooperation beyond city boundaries. Short-term measures are insufficient without systemic change. Public health impacts create enormous economic costs. Environmental justice is essential as vulnerable populations suffer most.",
+                    prevention: "Transition to clean energy and electric vehicles. Providing farmers with alternatives to stubble burning. Strict industrial emission standards. Improved public transportation systems. Green barriers and urban forests."
+                }
+            };
+            
+            caseCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const caseId = this.getAttribute('data-id');
+                    const caseData = caseStudyData[caseId];
+                    
+                    if (caseData) {
+                        document.getElementById('case-title').textContent = caseData.title;
+                        document.getElementById('image-before').src = caseData.beforeImage;
+                        document.getElementById('image-after').src = caseData.afterImage;
+                        document.getElementById('causes-content').textContent = caseData.causes;
+                        document.getElementById('social-content').textContent = caseData.social;
+                        document.getElementById('environmental-content').textContent = caseData.environmental;
+                        document.getElementById('lessons-content').textContent = caseData.lessons;
+                        document.getElementById('prevention-content').textContent = caseData.prevention;
+                        
+                        // Show case details and hide timeline
+                        document.querySelector('.timeline').style.display = 'none';
+                        caseDetails.classList.remove('hidden');
+                    }
+                });
+            });
+            
+            // Case study tabs
+            const caseTabs = document.querySelectorAll('.case-tab');
+            caseTabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    
+                    // Update active tab styling
+                    caseTabs.forEach(t => t.classList.remove('border-primary'));
+                    this.classList.add('border-b-2', 'border-primary');
+                    
+                    // Show corresponding content
+                    document.querySelectorAll('.case-detail').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    document.getElementById(`${tabId}-content`).classList.add('active');
+                });
+            });
+            
+            // Back button
+            backButton.addEventListener('click', function() {
+                document.querySelector('.timeline').style.display = 'block';
+                caseDetails.classList.add('hidden');
+            });
+            
+            // Image comparison slider
+            const sliderHandle = document.querySelector('.slider-handle');
+            const afterImage = document.querySelector('.image-comparison .after');
+            
+            let isDragging = false;
+            
+            sliderHandle.addEventListener('mousedown', () => {
+                isDragging = true;
+            });
+            
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+            
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                
+                const container = document.querySelector('.image-comparison');
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const percent = (x / rect.width) * 100;
+                
+                if (percent > 0 && percent < 100) {
+                    sliderHandle.style.left = `${percent}%`;
+                    afterImage.style.clipPath = `polygon(${percent}% 0, 100% 0, 100% 100%, ${percent}% 100%)`;
+                }
+            });
+        }
+
+        // Environment-Population-Social Issue Animation
+        function initAnimation() {
+            const steps = document.querySelectorAll('.animation-step');
+            let currentStep = 0;
+            let interval;
+            let isPlaying = false;
+            
+            function playAnimation() {
+                if (isPlaying) return;
+                
+                isPlaying = true;
+                interval = setInterval(() => {
+                    steps[currentStep].classList.remove('active');
+                    currentStep = (currentStep + 1) % steps.length;
+                    steps[currentStep].classList.add('active');
+                }, 3000);
+            }
+            
+            function pauseAnimation() {
+                clearInterval(interval);
+                isPlaying = false;
+            }
+            
+            document.getElementById('play-animation').addEventListener('click', playAnimation);
+            document.getElementById('pause-animation').addEventListener('click', pauseAnimation);
+        }
+
+        // Quiz functionality
+        function initQuiz() {
+            const questions = [
+                {
+                    question: "Which of these is NOT a natural disaster?",
+                    options: ["Earthquake", "Tsunami", "Gas leak", "Cyclone"],
+                    answer: 2
+                },
+                {
+                    question: "Which social issue increases vulnerability to disasters the most?",
+                    options: ["Access to technology", "Poverty", "Political representation", "Media coverage"],
+                    answer: 1
+                },
+                {
+                    question: "Which human activity contributes most to increased flooding risk?",
+                    options: ["Deforestation", "Internet usage", "Tourism", "Vehicle ownership"],
+                    answer: 0
+                },
+                {
+                    question: "The Bhopal Gas Tragedy of 1984 was caused by a leak of:",
+                    options: ["Chlorine", "Methyl isocyanate", "Carbon monoxide", "Sulfur dioxide"],
+                    answer: 1
+                },
+                {
+                    question: "What percentage of India's population lives in areas vulnerable to natural disasters?",
+                    options: ["Around 30%", "Around 45%", "Around 60%", "Around 75%"],
+                    answer: 2
+                }
+            ];
+            
+            let currentQuestion = 0;
+            let score = 0;
+            let selectedOption = null;
+            let timeLeft = 30;
+            let timer;
+            
+            const startBtn = document.getElementById('start-quiz');
+            const nextBtn = document.getElementById('next-question');
+            const quizStart = document.getElementById('quiz-start');
+            const quizQuestions = document.getElementById('quiz-questions');
+            const quizResult = document.getElementById('quiz-result');
+            const questionText = document.getElementById('question-text');
+            const optionsList = document.getElementById('options-list');
+            const currentQuestionEl = document.getElementById('current-question');
+            const totalQuestionsEl = document.getElementById('total-questions');
+            const timerEl = document.getElementById('timer');
+            const scoreEl = document.getElementById('score');
+            const totalScoreEl = document.getElementById('total-score');
+            const certificateScoreEl = document.getElementById('certificate-score');
+            const restartBtn = document.getElementById('restart-quiz');
+            
+            function startQuiz() {
+                quizStart.classList.add('hidden');
+                quizQuestions.classList.remove('hidden');
+                totalQuestionsEl.textContent = questions.length;
+                loadQuestion();
+                startTimer();
+            }
+            
+            function loadQuestion() {
+                selectedOption = null;
+                nextBtn.disabled = true;
+                currentQuestionEl.textContent = currentQuestion + 1;
+                questionText.textContent = questions[currentQuestion].question;
+                
+                optionsList.innerHTML = '';
+                questions[currentQuestion].options.forEach((option, index) => {
+                    const li = document.createElement('li');
+                    li.className = 'quiz-option';
+                    li.textContent = option;
+                    li.dataset.index = index;
+                    li.addEventListener('click', selectOption);
+                    optionsList.appendChild(li);
+                });
+                
+                resetTimer();
+            }
+            
+            function selectOption() {
+                const options = document.querySelectorAll('.quiz-option');
+                options.forEach(opt => opt.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedOption = parseInt(this.dataset.index);
+                nextBtn.disabled = false;
+            }
+            
+            function nextQuestion() {
+                if (selectedOption === questions[currentQuestion].answer) {
+                    score++;
+                }
+                
+                clearInterval(timer);
+                
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    loadQuestion();
+                    startTimer();
+                } else {
+                    showResult();
+                }
+            }
+            
+            function startTimer() {
+                timeLeft = 30;
+                timerEl.textContent = timeLeft;
+                timer = setInterval(() => {
+                    timeLeft--;
+                    timerEl.textContent = timeLeft;
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(timer);
+                        nextQuestion();
+                    }
+                }, 1000);
+            }
+            
+            function resetTimer() {
+                clearInterval(timer);
+                timeLeft = 30;
+                timerEl.textContent = timeLeft;
+            }
+            
+            function showResult() {
+                quizQuestions.classList.add('hidden');
+                quizResult.classList.remove('hidden');
+                scoreEl.textContent = score;
+                totalScoreEl.textContent = questions.length;
+                certificateScoreEl.textContent = `${score}/${questions.length}`;
+            }
+            
+            function restartQuiz() {
+                currentQuestion = 0;
+                score = 0;
+                quizResult.classList.add('hidden');
+                loadQuestion();
+                startTimer();
+                quizQuestions.classList.remove('hidden');
+            }
+            
+            startBtn.addEventListener('click', startQuiz);
+            nextBtn.addEventListener('click', nextQuestion);
+            restartBtn.addEventListener('click', restartQuiz);
+            
+            // Certificate download functionality
+            document.getElementById('download-certificate').addEventListener('click', function() {
+                alert("In the full version, this button will generate and download a PDF certificate with your score!");
+            });
+        }
+
+        // Disaster Predictor
+        function initDisasterPredictor() {
+            const predictorForm = document.getElementById('predictorForm');
+            const predictionResult = document.getElementById('predictionResult');
+            
+            predictorForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const population = this.elements['population'].value;
+                const deforestation = this.elements['deforestation'].value;
+                const urbanisation = this.elements['urbanisation'].value;
+                const climateChange = this.elements['climateChange'].value;
+                
+                // Simple rule-based prediction algorithm
+                let risks = [];
+                let riskLevel = 'Low';
+                let riskColor = 'green';
+                
+                if (population === 'high' || population === 'very-high') {
+                    risks.push('Higher vulnerability due to dense population');
+                }
+                
+                if (deforestation === 'severe' || deforestation === 'critical') {
+                    risks.push('Increased risk of landslides and flash floods');
+                    riskLevel = 'High';
+                    riskColor = 'red';
+                }
+                
+                if (urbanisation === 'rapid' || urbanisation === 'explosive') {
+                    risks.push('Urban flooding due to poor drainage and excessive concrete');
+                    if (riskLevel !== 'High') {
+                        riskLevel = 'Medium';
+                        riskColor = 'orange';
+                    }
+                }
+                
+                if (climateChange === 'significant' || climateChange === 'severe') {
+                    risks.push('Extreme weather events and unpredictable rainfall patterns');
+                    riskLevel = 'High';
+                    riskColor = 'red';
+                }
+                
+                if (risks.length === 0) {
+                    risks.push('Minimal disaster risk identified based on inputs');
+                }
+                
+                let primaryRisk = '';
+                
+                if (deforestation === 'severe' && urbanisation === 'rapid') {
+                    primaryRisk = 'Flooding';
+                } else if (population === 'very-high' && climateChange === 'severe') {
+                    primaryRisk = 'Heat Waves and Water Shortages';
+                } else if (deforestation === 'critical') {
+                    primaryRisk = 'Landslides';
+                } else if (urbanisation === 'explosive') {
+                    primaryRisk = 'Urban Flooding';
+                } else {
+                    primaryRisk = 'Multiple Hazards';
+                }
+                
+                // Display results
+                predictionResult.innerHTML = `
+                    <div class="text-center mb-6">
+                        <i class="fas fa-exclamation-triangle text-5xl mb-4" style="color: ${riskColor};"></i>
+                        <h3 class="text-2xl font-bold" style="color: ${riskColor};">${riskLevel} Risk Predicted</h3>
+                        <p class="text-xl mt-2">Primary risk: ${primaryRisk}</p>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h4 class="font-semibold mb-2">Detailed Assessment:</h4>
+                        <ul class="list-disc pl-5">
+                            ${risks.map(risk => `<li>${risk}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="mt-6 pt-4 border-t">
+                        <h4 class="font-semibold mb-2">Recommendations:</h4>
+                        <ul class="list-disc pl-5">
+                            <li>Develop community-based early warning systems</li>
+                            <li>Implement proper land-use planning and regulations</li>
+                            <li>Restore natural buffers like forests and wetlands</li>
+                            <li>Improve drainage infrastructure in urban areas</li>
+                        </ul>
+                    </div>
+                `;
+            });
+        }
+
+        // Build Your Own Disaster Plan
+        function initDisasterPlan() {
+            const planForm = document.getElementById('planForm');
+            const planResult = document.getElementById('planResult');
+            const saveBtn = document.getElementById('savePlan');
+            
+            planForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const locationType = this.elements['locationType'].value;
+                const familySize = this.elements['familySize'].value;
+                const considerations = [];
+                this.elements['considerations'].forEach(checkbox => {
+                    if (checkbox.checked) {
+                        considerations.push(checkbox.value);
+                    }
+                });
+                const disasterType = this.elements['disasterType'].value;
+                
+                // Generate custom plan based on inputs
+                let emergencyItems = [
+                    "Drinking water (1 gallon per person per day for at least 3 days)",
+                    "Non-perishable food (enough for 3 days)",
+                    "Battery-powered or hand-crank radio",
+                    "Flashlight and extra batteries",
+                    "First aid kit",
+                    "Whistle to signal for help",
+                    "Dust mask, plastic sheeting and duct tape",
+                    "Moist towelettes, garbage bags and plastic ties",
+                    "Wrench or pliers for utilities",
+                    "Local maps",
+                    "Cell phone with chargers and backup battery"
+                ];
+                
+                // Add location-specific items
+                if (locationType === 'urban') {
+                    emergencyItems.push("Crowbar (for debris)",
+                    "Emergency contact cards with neighborhood meeting points");
+                } else if (locationType === 'rural') {
+                    emergencyItems.push("Extra fuel for generator",
+                    "Emergency signal flares");
+                } else if (locationType === 'coastal') {
+                    emergencyItems.push("Life jackets",
+                    "Waterproof document container");
+                }
+                
+                // Add family size considerations
+                if (familySize === '5-6' || familySize === '7+') {
+                    emergencyItems.push("Multiple evacuation routes for large group",
+                    "Family communication plan with designated meeting points");
+                }
+                
+                // Add special considerations
+                if (considerations.includes('elderly')) {
+                    emergencyItems.push("Extra prescription medications",
+                    "Mobility aids",
+                    "Extra warm clothing and blankets");
+                }
+                
+                if (considerations.includes('children')) {
+                    emergencyItems.push("Infant formula and diapers (if applicable)",
+                    "Activities for children",
+                    "Comfort items/toys");
+                }
+                
+                if (considerations.includes('pets')) {
+                    emergencyItems.push("Pet food and water",
+                    "Pet carriers and leashes",
+                    "Pet medications");
+                }
+                
+                if (considerations.includes('medical')) {
+                    emergencyItems.push("Medical supplies/equipment",
+                    "List of medications and dosages",
+                    "Copies of prescriptions",
+                    "Doctor contact information");
+                }
+                
+                // Disaster-specific items and steps
+                let disasterItems = [];
+                let disasterSteps = [];
+                
+                if (disasterType === 'flood') {
+                    disasterItems = [
+                        "Waterproof boots",
+                        "Inflatable raft or boat",
+                        "Water purification tablets"
+                    ];
+                    disasterSteps = [
+                        "Move to higher ground immediately",
+                        "Avoid walking or driving through flood waters",
+                        "Be prepared to evacuate quickly",
+                        "Waterproof important documents"
+                    ];
+                } else if (disasterType === 'earthquake') {
+                    disasterItems = [
+                        "Sturdy shoes",
+                        "Work gloves",
+                        "Fire extinguisher"
+                    ];
+                    disasterSteps = [
+                        "Drop, Cover, and Hold On during shaking",
+                        "Stay away from windows and exterior walls",
+                        "If outdoors, move to a clear area away from buildings",
+                        "Be prepared for aftershocks"
+                    ];
+                } else if (disasterType === 'cyclone') {
+                    disasterItems = [
+                        "Window board-up materials",
+                        "Waterproof clothing",
+                        "Portable weather radio"
+                    ];
+                    disasterSteps = [
+                        "Secure outdoor objects or bring them inside",
+                        "Cover all windows with storm shutters or plywood",
+                        "Stay in a small, interior room away from windows",
+                        "Evacuate if directed by authorities"
+                    ];
+                } else if (disasterType === 'fire') {
+                    disasterItems = [
+                        "N95 respirator masks",
+                        "Fire extinguisher",
+                        "Heat-resistant gloves"
+                    ];
+                    disasterSteps = [
+                        "Create a defensible space around your home",
+                        "Have multiple evacuation routes planned",
+                        "Close all windows and doors but leave unlocked",
+                        "Turn on outside lights to help first responders"
+                    ];
+                } else if (disasterType === 'industrial') {
+                    disasterItems = [
+                        "Gas masks or respiratory protection",
+                        "Plastic sheeting and duct tape for sealing rooms",
+                        "Chemical suit if available"
+                    ];
+                    disasterSteps = [
+                        "Evacuate the area if instructed",
+                        "If told to shelter-in-place, turn off HVAC systems",
+                        "Seal all windows, doors and air vents",
+                        "Listen to local emergency radio for instructions"
+                    ];
+                }
+                
+                // Combine all items
+                emergencyItems = [...emergencyItems, ...disasterItems];
+                
+                // Display the plan
+                planResult.innerHTML = `
+                    <h3 class="text-xl font-semibold mb-4">Your Personalized ${getDisasterName(disasterType)} Plan</h3>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-primary mb-2">Emergency Kit Items:</h4>
+                        <ul class="list-disc pl-5">
+                            ${emergencyItems.map(item => `<li>${item}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <h4 class="font-semibold text-primary mb-2">Step-by-Step Plan:</h4>
+                        <ol class="list-decimal pl-5">
+                            ${disasterSteps.map(step => `<li class="mb-2">${step}</li>`).join('')}
+                        </ol>
+                    </div>
+                    
+                    <div class="p-4 bg-blue-50 border border-blue-200 rounded">
+                        <h4 class="font-semibold text-blue-700 mb-2">Important Reminders:</h4>
+                        <ul class="list-disc pl-5">
+                            <li>Update your emergency contacts regularly</li>
+                            <li>Review and practice your plan with all family members</li>
+                            <li>Check emergency supplies every 6 months</li>
+                            <li>Keep important documents in a waterproof, portable container</li>
+                        </ul>
+                    </div>
+                `;
+                
+                saveBtn.classList.remove('hidden');
+            });
+            
+            function getDisasterName(type) {
+                const names = {
+                    flood: "Flood",
+                    earthquake: "Earthquake",
+                    cyclone: "Cyclone/Hurricane",
+                    fire: "Fire",
+                    drought: "Drought",
+                    industrial: "Industrial Disaster"
+                };
+                return names[type] || "Disaster";
+            }
+            
+            saveBtn.addEventListener('click', function() {
+                alert("In the full version, this will save your plan as a PDF or to your device's local storage!");
+            });
+        }
+
+        // Carbon Footprint Calculator
+        function initCarbonCalculator() {
+            const carbonForm = document.getElementById('carbonForm');
+            const carbonResult = document.getElementById('carbonResult');
+            
+            carbonForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const transportation = this.elements['transportation'].value;
+                const diet = this.elements['diet'].value;
+                const energy = this.elements['energy'].value;
+                const waste = this.elements['waste'].value;
+                const airTravel = this.elements['airTravel'].value;
+                
+                // Calculate carbon footprint (simplified algorithm)
+                let carbonScore = 0;
+                
+                // Transportation impact
+                if (transportation === 'car') carbonScore += 50;
+                else if (transportation === 'carShort') carbonScore += 30;
+                else if (transportation === 'publicTransport') carbonScore += 15;
+                else if (transportation === 'carpool') carbonScore += 20;
+                else if (transportation === 'bike') carbonScore += 0;
+                
+                // Diet impact
+                if (diet === 'meatHeavy') carbonScore += 50;
+                else if (diet === 'meatModerate') carbonScore += 35;
+                else if (diet === 'vegetarian') carbonScore += 20;
+                else if (diet === 'vegan') carbonScore += 10;
+                
+                // Energy impact
+                if (energy === 'high') carbonScore += 40;
+                else if (energy === 'medium') carbonScore += 25;
+                else if (energy === 'low') carbonScore += 15;
+                else if (energy === 'renewable') carbonScore += 5;
+                
+                // Waste impact
+                if (waste === 'high') carbonScore += 30;
+                else if (waste === 'medium') carbonScore += 20;
+                else if (waste === 'low') carbonScore += 10;
+                else if (waste === 'minimal') carbonScore += 2;
+                
+                // Air travel impact
+                if (airTravel === 'frequent') carbonScore += 40;
+                else if (airTravel === 'occasional') carbonScore += 20;
+                else if (airTravel === 'rare') carbonScore += 5;
+                else if (airTravel === 'none') carbonScore += 0;
+                
+                // Calculate tons of CO2
+                const yearlyTonsCO2 = (carbonScore / 20).toFixed(1);
+                
+                // Determine impact level
+                let impactLevel, impactColor;
+                if (carbonScore < 50) {
+                    impactLevel = "Low";
+                    impactColor = "green";
+                } else if (carbonScore < 100) {
+                    impactLevel = "Below Average";
+                    impactColor = "lightgreen";
+                } else if (carbonScore < 150) {
+                    impactLevel = "Average";
+                    impactColor = "orange";
+                } else {
+                    impactLevel = "High";
+                    impactColor = "red";
+                }
+                
+                // Generate recommendations based on inputs
+                const recommendations = [];
+                
+                if (transportation === 'car' || transportation === 'carShort') {
+                    recommendations.push("Consider carpooling, public transportation, or biking for shorter trips");
+                    recommendations.push("If possible, switch to an electric or hybrid vehicle");
+                }
+                
+                if (diet === 'meatHeavy' || diet === 'meatModerate') {
+                    recommendations.push("Try having meat-free days each week");
+                    recommendations.push("Choose locally sourced food to reduce transportation emissions");
+                }
+                
+                if (energy === 'high' || energy === 'medium') {
+                    recommendations.push("Switch to energy-efficient appliances");
+                    recommendations.push("Consider installing solar panels");
+                    recommendations.push("Use programmable thermostats to reduce unnecessary heating/cooling");
+                }
+                
+                if (waste === 'high' || waste === 'medium') {
+                    recommendations.push("Start composting organic waste");
+                    recommendations.push("Reduce single-use plastics");
+                    recommendations.push("Participate in recycling programs");
+                }
+                
+                if (airTravel === 'frequent' || airTravel === 'occasional') {
+                    recommendations.push("Consider video conferencing instead of business travel");
+                    recommendations.push("Offset your flights with carbon credits");
+                    recommendations.push("Combine trips to reduce frequency of air travel");
+                }
+                
+                // Display results
+                carbonResult.innerHTML = `
+                    <div class="text-center mb-6">
+                        <div class="inline-block p-4 rounded-full" style="background-color: ${impactColor}30;">
+                            <i class="fas fa-leaf text-5xl" style="color: ${impactColor};"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mt-4">Your Carbon Footprint</h3>
+                        <p class="text-4xl font-bold mt-2" style="color: ${impactColor};">${yearlyTonsCO2} tonnes CO₂/year</p>
+                        <p class="mt-2">Impact Level: <span style="color: ${impactColor}; font-weight: bold;">${impactLevel}</span></p>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-semibold mb-4">How to Reduce Your Footprint:</h4>
+                        <ul class="list-disc pl-5">
+                            ${recommendations.map(rec => `<li class="mb-2">${rec}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="mt-8 p-4 bg-green-50 border border-green-200 rounded">
+                        <h4 class="font-semibold text-green-700 mb-2">Environmental Impact:</h4>
+                        <p>If everyone lived like you, we would need ${((yearlyTonsCO2 / 2) * 0.6).toFixed(1)} Earths to sustain humanity.</p>
+                    </div>
+                `;
+            });
+        }
+
+        // Contact Form
+        function initContactForm() {
+            const contactForm = document.getElementById('contactForm');
+            
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const inquiryType = document.getElementById('inquiryType').value;
+                const message = document.getElementById('message').value;
+                
+                // Validate form
+                if (!name || !email || !message) {
+                    alert('Please fill out all required fields');
+                    return;
+                }
+                
+                // In a real implementation, this would submit the form data to a server
+                alert('Thank you for your message. We will get back to you soon!');
+                
+                // Clear form
+                contactForm.reset();
+            });
+        }
+
+        // Chatbot functionality
+        function initChatbot() {
+            const chatbotToggle = document.querySelector('.chatbot-toggle');
+            const chatbotContainer = document.querySelector('.chatbot-container');
+            const chatbotMessages = document.getElementById('chatbot-messages');
+            const chatbotInput = document.querySelector('.chatbot-input');
+            const chatbotSend = document.querySelector('.chatbot-send');
+            
+            const chatbotResponses = {
+                earthquake: "During an earthquake: DROP to the ground, COVER your head and neck, and HOLD ON until the shaking stops. Stay away from windows and exterior walls. If outdoors, move to a clear area away from buildings, trees, and power lines. Be prepared for aftershocks.",
+                
+                flood: "If there's a flood warning: Move to higher ground immediately. Avoid walking or driving through flood waters - just 6 inches of moving water can knock you down, and 1 foot can sweep your vehicle away. If trapped in a building, go to the highest level (but not into a closed attic).",
+                
+                population: "Population growth affects the environment in multiple ways: Increased resource consumption (water, food, energy), greater waste generation, deforestation for agriculture and housing, higher pollution levels, and habitat destruction. It also amplifies climate change impacts through higher emissions.",
+                
+                kit: "An emergency disaster kit should contain: Water (one gallon per person per day for several days), non-perishable food, battery-powered radio, flashlight, first aid kit, extra batteries, whistle, dust mask, plastic sheeting and duct tape, moist towelettes, garbage bags, wrench/pliers, manual can opener, local maps, cell phone with chargers and backup battery.",
+                
+                cyclone: "During a cyclone/hurricane: Stay indoors away from windows, skylights, and glass doors. Find a small interior room or closet on the lowest level. Cover yourself with a mattress or blankets. If the eye passes over, stay inside - the storm will resume from the opposite direction. Keep listening to emergency information.",
+                
+                pollution: "Air pollution increases disaster risk by weakening respiratory health, making people more vulnerable during emergencies. It also contributes to climate change, which intensifies weather-related disasters. Industrial air pollution can lead directly to chemical emergencies and contamination events.",
+                
+                preparation: "To prepare for disasters: 1) Create an emergency plan and share it with family, 2) Build an emergency kit with supplies for at least 3 days, 3) Stay informed about local hazards and warning systems, 4) Learn first aid and CPR, 5) Identify evacuation routes and meeting places, 6) Keep important documents in a waterproof container, 7) Practice your emergency plan regularly.",
+                
+                climate: "Climate change increases disaster frequency and intensity through: Rising sea levels (worse coastal flooding), higher temperatures (more heatwaves, droughts, wildfires), changing precipitation patterns (increased floods, landslides), and more powerful storms. These changes make communities more vulnerable, especially those with limited resources.",
+            };
+            
+            let isChatbotOpen = false;
+            
+            chatbotToggle.addEventListener('click', function() {
+                if (isChatbotOpen) {
+                    chatbotContainer.style.display = 'none';
+                } else {
+                    chatbotContainer.style.display = 'flex';
+                }
+                isChatbotOpen = !isChatbotOpen;
+            });
+            
+            function sendMessage() {
+                const message = chatbotInput.value.trim();
+                if (message === '') return;
+                
+                // Add user message
+                addMessage(message, 'user');
+                chatbotInput.value = '';
+                
+                // Process message and respond
+                setTimeout(() => {
+                    const response = getBotResponse(message);
+                    addMessage(response, 'bot');
+                }, 500);
+            }
+            
+            function addMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${sender}`;
+                messageDiv.textContent = text;
+                chatbotMessages.appendChild(messageDiv);
+                chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+            }
+            
+            function getBotResponse(message) {
+                const lowerMessage = message.toLowerCase();
+                
+                if (lowerMessage.includes('earthquake') || lowerMessage.includes('what to do during an earthquake')) {
+                    return chatbotResponses.earthquake;
+                } else if (lowerMessage.includes('flood') || lowerMessage.includes('what to do during flood')) {
+                    return chatbotResponses.flood;
+                } else if (lowerMessage.includes('population') || lowerMessage.includes('population explosion') || lowerMessage.includes('affects environment')) {
+                    return chatbotResponses.population;
+                } else if (lowerMessage.includes('emergency kit') || lowerMessage.includes('disaster kit')) {
+                    return chatbotResponses.kit;
+                } else if (lowerMessage.includes('cyclone') || lowerMessage.includes('hurricane')) {
+                    return chatbotResponses.cyclone;
+                } else if (lowerMessage.includes('pollution') || lowerMessage.includes('air quality')) {
+                    return chatbotResponses.pollution;
+                } else if (lowerMessage.includes('prepare') || lowerMessage.includes('preparation') || lowerMessage.includes('ready')) {
+                    return chatbotResponses.preparation;
+                } else if (lowerMessage.includes('climate') || lowerMessage.includes('climate change')) {
+                    return chatbotResponses.climate;
+                } else {
+                    return "I'm sorry, I don't have information about that yet. Try asking about earthquakes, floods, population growth, emergency kits, cyclones, pollution, disaster preparation, or climate change.";
+                }
+            }
+            
+            chatbotSend.addEventListener('click', sendMessage);
+            
+            chatbotInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        }
+
+        // Initialize all components
+        document.addEventListener('DOMContentLoaded', function() {
+            initMobileMenu();
+            initDashboardCharts();
+            initPopulationSlider();
+            initIndiaMap();
+            initCaseStudies();
+            initAnimation();
+            initQuiz();
+            initDisasterPredictor();
+            initDisasterPlan();
+            initCarbonCalculator();
+            initContactForm();
+            initChatbot();
+        });
+    </script>
+</body>
+</html>

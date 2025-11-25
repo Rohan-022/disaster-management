@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disaster Management: Social Issues, Human Population, and Environment</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Leaflet.js for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- AOS Animation library -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <!-- ApexCharts -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- jQuery UI for sliders -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header bg-white shadow-md fixed w-full z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <h1 class="text-2xl font-bold text-primary">Disaster Management</h1>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#hero" class="nav-link text-gray-700 hover:text-primary transition duration-300">Home</a>
+                    <a href="#dashboard" class="nav-link text-gray-700 hover:text-primary transition duration-300">About</a>
+                    <div class="relative group">
+                        <button class="nav-link text-gray-700 hover:text-primary transition duration-300 flex items-center">
+                            Topics <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+                            <a href="#case-studies" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-green-500">Case Studies</a>
+                            <a href="#predictor" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-green-500">Risk Predictor</a>
+                            <a href="#animation" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-green-500">Relationships</a>
+                            <a href="#quiz" class="block px-4 py-2 text-gray-700 hover:bg-primary hover:text-green-500">Quiz</a>
+                        </div>
+                    </div>
+                    <a href="#disaster-plan" class="nav-link text-gray-700 hover:text-primary transition duration-300">Planing</a>
+                    <a href="#gallery" class="nav-link text-gray-700 hover:text-primary transition duration-300">Resources</a>
+                    
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-primary transition duration-300">Contact</a>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-700 hover:text-primary focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div id="mobile-menu" class="md:hidden mt-4 hidden">
+                <div class="flex flex-col space-y-4">
+                    <a href="#hero" class="nav-link text-gray-700 hover:text-primary transition duration-300">Home</a>
+                    <a href="#dashboard" class="nav-link text-gray-700 hover:text-primary transition duration-300">About</a>
+                    <a href="#case-studies" class="nav-link text-gray-700 hover:text-primary transition duration-300">Case Studies</a>
+                    <a href="#predictor" class="nav-link text-gray-700 hover:text-primary transition duration-300">Risk Predictor</a>
+                    <a href="#animation" class="nav-link text-gray-700 hover:text-primary transition duration-300">Relationships</a>
+                    <a href="#quiz" class="nav-link text-gray-700 hover:text-primary transition duration-300">Quiz</a>
+                    <a href="#gallery" class="nav-link text-gray-700 hover:text-primary transition duration-300">Resources</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-primary transition duration-300">Contact</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="animated-bg" id="animated-bg"></div>
+        <div class="hero-content" data-aos="fade-up">
+            <div class="hero-text">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4">Disaster Management</h1>
+                <h2 class="text-xl md:text-3xl mb-6">Social Issues, Human Population, and Environment</h2>
+                <p class="text-lg mb-8">"Understanding the Risks. Preparing for Tomorrow."</p>
+                <a href="#dashboard" class="bg-accent text-dark hover:bg-opacity-90 px-8 py-3 rounded-full text-lg font-bold transition duration-300">Explore Case Studies</a>
+            </div>
+            <div class="hero-chart" data-aos="fade-left" data-aos-delay="300">
+                <div class="chart-container-hero">
+                    <h3 class="text-xl font-semibold mb-4 text-center text-gray-700">Disaster Distribution Analysis</h3>
+                    <canvas id="disasterPieChart"></canvas>
+                    <p class="text-sm text-gray-600 mt-4 text-center">Hover over chart segments to see detailed information about each disaster type.</p>
+                    <div class="mt-4 text-center">
+                        <button id="toggle3d" class="bg-primary text-green-700 font-bold px-4 py-2 rounded hover:bg-opacity-90 transition duration-300">Toggle 3D Effect</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Dashboard Section -->
+    <section class="dashboard" id="dashboard">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Interactive Disaster Impact Dashboard</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Chart 1: Population Growth vs Disaster Frequency -->
+                <div class="chart-container" data-aos="fade-up">
+                    <h3 class="text-xl font-semibold mb-4">Population Growth vs Disaster Frequency</h3>
+                    <canvas id="popVsDisasterChart"></canvas>
+                </div>
+                
+                <!-- Chart 2: Social Issues Heat Map -->
+                <div class="chart-container" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-semibold mb-4">Social Issues by State/District</h3>
+                    <div id="heatmapChart"></div>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4">Population Impact Simulator</h3>
+                <div class="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
+                    <div id="populationSlider"></div>
+                    <p class="mt-4 text-center"><span id="populationValue">50</span>% increase in population</p>
+                    <div class="mt-6 p-4 border border-red-200 rounded bg-red-50">
+                        <h4 class="font-semibold text-red-700 mb-2">Environmental Strain Effects:</h4>
+                        <ul class="list-disc pl-5" id="strainEffects">
+                            <li>Water resources depleted by 25%</li>
+                            <li>Deforestation increased by 30%</li>
+                            <li>Air quality reduced by 20%</li>
+                            <li>Risk of flooding increased by 15%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4">Disaster Map of India</h3>
+                <div class="map-container" id="indiaMap" data-aos="fade-up"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies Section -->
+    <section class="case-studies" id="case-studies">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Immersive Case Study Explorer</h2>
+            
+            <div class="timeline">
+                <div class="timeline-track">
+                    <!-- Case Study Cards -->
+                    <div class="case-card" data-id="uttarakhand" data-aos="fade-up">
+                        <img src="uttrakhand.jpg" alt="Uttarakhand Floods">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl">Uttarakhand Floods (2013)</h3>
+                            <p class="text-gray-600">One of the worst natural disasters in India</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card" data-id="vizag" data-aos="fade-up" data-aos-delay="100">
+                        <img src="vegas gas leak.webp" alt="Vizag Gas Leak">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl">Vizag Gas Leak (2020)</h3>
+                            <p class="text-gray-600">Industrial disaster affecting thousands</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card" data-id="bhopal" data-aos="fade-up" data-aos-delay="200">
+                        <img src="bhopal-gas-tragedy-1701511067.jpg" alt="Bhopal Gas Tragedy">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl">Bhopal Gas Tragedy (1984)</h3>
+                            <p class="text-gray-600">World's worst industrial disaster</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card" data-id="kerala" data-aos="fade-up" data-aos-delay="300">
+                        <img src="FL25KERALAFLOOD.webp" alt="Kerala Floods">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl">Kerala Floods (2018)</h3>
+                            <p class="text-gray-600">Devastating floods affecting millions</p>
+                        </div>
+                    </div>
+                    
+                    <div class="case-card" data-id="delhi" data-aos="fade-up" data-aos-delay="400">
+                        <img src="Winter-air-pollution-in-New-Delhi-Suraj-Singh-Bisht-696x392.jpg-e1762764963130.avif"Delhi Air Pollution">
+                        <div class="p-4">
+                            <h3 class="font-bold text-xl">Delhi Air Pollution Crisis</h3>
+                            <p class="text-gray-600">Ongoing environmental emergency</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Case Study Details -->
+            <div class="mt-10 bg-white p-6 rounded-lg shadow-md hidden" id="case-details">
+                <button class="back-to-timeline mb-4 flex items-center text-primary hover:underline">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to all case studies
+                </button>
+                
+                <h3 class="text-2xl font-bold mb-4" id="case-title"></h3>
+                
+                <div class="image-comparison mb-6">
+                    <img class="before" id="image-before" src="" alt="Before">
+                    <img class="after" id="image-after" src="" alt="After">
+                    <div class="slider-handle">
+                        <div class="slider-button">
+                            <i class="fas fa-arrows-alt-h"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="case-tabs flex border-b mb-6">
+                    <button class="case-tab px-4 py-2 border-b-2 border-primary" data-tab="causes">Causes</button>
+                    <button class="case-tab px-4 py-2" data-tab="social">Social Impact</button>
+                    <button class="case-tab px-4 py-2" data-tab="environmental">Environmental Impact</button>
+                    <button class="case-tab px-4 py-2" data-tab="lessons">Lessons Learnt</button>
+                    <button class="case-tab px-4 py-2" data-tab="prevention">Prevention Strategy</button>
+                </div>
+                
+                <div class="case-content">
+                    <div class="case-detail active" id="causes-content"></div>
+                    <div class="case-detail" id="social-content"></div>
+                    <div class="case-detail" id="environmental-content"></div>
+                    <div class="case-detail" id="lessons-content"></div>
+                    <div class="case-detail" id="prevention-content"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disaster Predictor Mini-App -->
+    <section class="tools-section" id="predictor">
+        <div class="container mx-auto">
+            <h2 class="section-title text-3xl text-dark">Disaster Predictor Mini-App</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div data-aos="fade-right">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Predict Disaster Risk Based on Factors</h3>
+                        <p class="mb-6 text-gray-600">Input environmental and social factors to see potential disaster risks in your area.</p>
+                        
+                        <form id="predictorForm">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Population Density</label>
+                                <select class="w-full p-2 border rounded" name="population" required>
+                                    <option value="">Select density level</option>
+                                    <option value="low">Low (Rural Areas)</option>
+                                    <option value="medium">Medium (Suburban)</option>
+                                    <option value="high">High (Urban)</option>
+                                    <option value="very-high">Very High (Metropolitan)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Deforestation Level</label>
+                                <select class="w-full p-2 border rounded" name="deforestation" required>
+                                    <option value="">Select deforestation level</option>
+                                    <option value="minimal">Minimal</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="severe">Severe</option>
+                                    <option value="critical">Critical</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Urbanisation Rate</label>
+                                <select class="w-full p-2 border rounded" name="urbanisation" required>
+                                    <option value="">Select urbanisation rate</option>
+                                    <option value="slow">Slow</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="rapid">Rapid</option>
+                                    <option value="explosive">Explosive Growth</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Climate Change Impact</label>
+                                <select class="w-full p-2 border rounded" name="climateChange" required>
+                                    <option value="">Select impact level</option>
+                                    <option value="minimal">Minimal</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="significant">Significant</option>
+                                    <option value="severe">Severe</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-green-700 font-bold py-3 px-6 rounded-lg hover:bg-opacity-90 transition duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 ">
+    PREDICT RISK
+</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Prediction Results</h3>
+                        <div id="predictionResult" class="min-h-[300px] flex items-center justify-center">
+                            <p class="text-gray-500 text-center">Fill the form to see disaster risk prediction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environment-Population-Social Issue Relationship Animation -->
+    <section class="animation-section" id="animation">
+        <div class="container mx-auto text-center">
+            <h2 class="section-title mx-auto text-5xl text-dark">Environment–Population–Social Issue Relationship </h2>
+            <p class="mb-8 text-gray-600 max-w-3xl mx-auto">Watch how environmental changes trigger a cascade of effects on population and social issues</p>
+            
+            <div class="animation-container" data-aos="fade-up">
+                <div class="animation-step active" id="step1">
+                    <i class="fas fa-tree text-8xl mb-4 text-green-600"></i>
+                    <h3 class="text-5xl font-bold ">Deforestation Increases</h3>
+                    <p class="mt-4 text-xl">Human activities lead to widespread forest loss</p>
+                </div>
+                
+                <div class="animation-step" id="step2">
+                    <i class="fas fa-temperature-high text-8xl mb-4 text-red-500"></i>
+                    <h3 class="text-5xl font-bold">Temperature Increases</h3>
+                    <p class="mt-4 text-xl">Loss of tree cover causes local temperature to rise</p>
+                </div>
+                
+                <div class="animation-step" id="step3">
+                    <i class="fas fa-fire text-8xl mb-4 text-orange-500"></i>
+                    <h3 class="text-5xl font-bold">Wildfires Increase</h3>
+                    <p class="mt-4 text-xl">Higher temperatures and dry conditions lead to more frequent fires</p>
+                </div>
+                
+                <div class="animation-step" id="step4">
+                    <i class="fas fa-people-arrows text-8xl mb-4 text-blue-500"></i>
+                    <h3 class="text-5xl font-bold">Migration Increases</h3>
+                    <p class="mt-4 text-xl">People are forced to relocate due to uninhabitable conditions</p>
+                </div>
+                
+                <div class="animation-step" id="step5">
+                    <i class="fas fa-house-damage text-8xl mb-4 text-gray-700"></i>
+                    <h3 class="text-5xl font-bold">Social Issues Increase</h3>
+                    <p class="mt-4 text-xl">Poverty, unemployment, and resource conflicts worsen</p>
+                </div>
+            </div>
+            
+            <div class="mt-6">
+                <button id="play-animation" class="bg-blue-300 text-Red-700  font-bold py-2 px-6 rounded-full hover:bg-gray-400 transition duration-300 ml-4">Play Animation</button>
+                <button id="pause-animation" class="bg-gray-300 text-gray-700 py-2 px-6 rounded-full hover:bg-gray-400 transition duration-300 ml-4">Pause</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quiz Section -->
+    <section class="quiz-section" id="quiz">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Test Your Knowledge</h2>
+            <p class="mb-8 text-gray-600">Challenge yourself with this quiz on disasters, social issues, and environmental impacts</p>
+            
+            <div class="quiz-container" data-aos="fade-up">
+                <div id="quiz-start" class="text-center py-8">
+                    <i class="fas fa-question-circle text-6xl text-primary mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-4">Disaster Management Quiz</h3>
+                    <p class="mb-6">This quiz contains questions about disaster types, social issues, and human activities that affect our environment.</p>
+                    <button id="start-quiz" class="bg-primary text-Red-700 font-bold py-3 px-8 rounded-lg hover:bg-opacity-90 transition duration-300">Start Quiz</button>
+                </div>
+                
+                <div id="quiz-questions" class="hidden">
+                    <div class="flex justify-between mb-6">
+                        <div class="quiz-progress">
+                            Question <span id="current-question">1</span> of <span id="total-questions">10</span>
+                        </div>
+                        <div class="quiz-timer text-primary font-semibold">
+                            Time: <span id="timer">30</span>s
+                        </div>
+                    </div>
+                    
+                    <div class="quiz-question">
+                        <h3 id="question-text" class="text-xl font-semibold mb-4"></h3>
+                        <ul class="quiz-options" id="options-list"></ul>
+                    </div>
+                    
+                    <button id="next-question" class="mt-6 bg-primary text-blue-600 font-bold py-2 px-6 rounded hover:bg-opacity-90 transition duration-300 disabled:opacity-50" disabled>Next Question</button>
+                </div>
+                
+                <div id="quiz-result" class="hidden text-center py-8">
+                    <i class="fas fa-award text-6xl text-primary mb-4"></i>
+                    <h3 class="text-2xl font-bold mb-2">Quiz Completed!</h3>
+                    <p class="text-xl mb-4">Your Score: <span id="score">0</span>/<span id="total-score">0</span></p>
+                    <div class="certificate-container border-4 border-primary p-6 mx-auto max-w-md mb-6">
+                        <h3 class="text-2xl font-bold mb-2 ">Certificate of Completion</h3>
+                        <p class="mb-1">This certifies that</p>
+                        <p class="text-xl font-bold mb-1" id="user-name">You</p>
+                        <p class="mb-1">has successfully completed the</p>
+                        <p class="text-lg font-bold mb-3">Disaster Management Knowledge Quiz</p>
+                        <p class="mb-1">with a score of</p>
+                        <p class="text-xl font-bold" id="certificate-score">0/0</p>
+                    </div>
+                    <button id="restart-quiz" class="bg-primary text-green-700 font-bold py-2 px-6 rounded hover:bg-opacity-90 transition duration-300">Restart Quiz</button>
+                    <button id="download-certificate" class="bg-accent text-dark py-2 px-6 rounded hover:bg-opacity-90 transition duration-300 ml-2">Download Certificate</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Build Your Own Disaster Plan -->
+    <section class="tools-section bg-white" id="disaster-plan">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Build Your Own Disaster Plan</h2>
+            <p class="mb-8 text-gray-600">Create a customized emergency plan based on your specific situation</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div data-aos="fade-right">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Customize Your Emergency Plan</h3>
+                        <form id="planForm">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Location Type</label>
+                                <select class="w-full p-2 border rounded" name="locationType" required>
+                                    <option value="">Select your location</option>
+                                    <option value="urban">Urban</option>
+                                    <option value="suburban">Suburban</option>
+                                    <option value="rural">Rural</option>
+                                    <option value="coastal">Coastal</option>
+                                    <option value="mountainous">Mountainous</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Family Size</label>
+                                <select class="w-full p-2 border rounded" name="familySize" required>
+                                    <option value="">Select family size</option>
+                                    <option value="1-2">1-2 People</option>
+                                    <option value="3-4">3-4 People</option>
+                                    <option value="5-6">5-6 People</option>
+                                    <option value="7+">7+ People</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Special Considerations</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="considerations" value="elderly" class="mr-2">
+                                        Elderly
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="considerations" value="children" class="mr-2">
+                                        Young Children
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="considerations" value="pets" class="mr-2">
+                                        Pets
+                                    </label>
+                                    <label class="flex items-center">
+                                        <input type="checkbox" name="considerations" value="medical" class="mr-2">
+                                        Medical Needs
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Disaster Type</label>
+                                <select class="w-full p-2 border rounded" name="disasterType" required>
+                                    <option value="">Select disaster type</option>
+                                    <option value="flood">Flood</option>
+                                    <option value="earthquake">Earthquake</option>
+                                    <option value="cyclone">Cyclone/Hurricane</option>
+                                    <option value="fire">Fire</option>
+                                    <option value="drought">Drought</option>
+                                    <option value="industrial">Industrial Disaster</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-green-500 font-bold py-2 px-4 rounded  text-xl hover:bg-opacity-90 transition duration-300">Generate Plan</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Your Personalized Disaster Plan</h3>
+                        <div id="planResult" class="min-h-[300px]">
+                            <div class="flex items-center justify-center h-full">
+                                <p class="text-gray-500 text-center">Fill the form to generate your personalized disaster plan</p>
+                            </div>
+                        </div>
+                        <button id="savePlan" class="w-full mt-4 bg-accent text-dark py-2 px-4 rounded hover:bg-opacity-90 transition duration-300 hidden">Save Plan to Device</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carbon Footprint Calculator -->
+    <section class="tools-section" id="carbon-calculator">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Carbon Footprint Calculator</h2>
+            <p class="mb-8 text-gray-600">Measure your impact on the environment and learn how to reduce it</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div data-aos="fade-right">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Calculate Your Carbon Footprint</h3>
+                        <form id="carbonForm">
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Transportation (daily average)</label>
+                                <select class="w-full p-2 border rounded" name="transportation" required>
+                                    <option value="">Select option</option>
+                                    <option value="car">Personal Car (>20km)</option>
+                                    <option value="carShort">Personal Car (<20km)</option>
+                                    <option value="publicTransport">Public Transportation</option>
+                                    <option value="carpool">Carpool/Rideshare</option>
+                                    <option value="bike">Bicycle/Walking</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Diet</label>
+                                <select class="w-full p-2 border rounded" name="diet" required>
+                                    <option value="">Select option</option>
+                                    <option value="meatHeavy">Meat in most meals</option>
+                                    <option value="meatModerate">Meat a few times a week</option>
+                                    <option value="vegetarian">Vegetarian</option>
+                                    <option value="vegan">Vegan</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Home Energy Consumption</label>
+                                <select class="w-full p-2 border rounded" name="energy" required>
+                                    <option value="">Select option</option>
+                                    <option value="high">High (Large home, A/C, many appliances)</option>
+                                    <option value="medium">Medium (Average home and usage)</option>
+                                    <option value="low">Low (Small home, energy-efficient)</option>
+                                    <option value="renewable">Primarily renewable energy</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="block text-gray-700 mb-2">Waste Generation</label>
+                                <select class="w-full p-2 border rounded" name="waste" required>
+                                    <option value="">Select option</option>
+                                    <option value="high">High (Limited recycling)</option>
+                                    <option value="medium">Medium (Some recycling)</option>
+                                    <option value="low">Low (Active recycling and composting)</option>
+                                    <option value="minimal">Minimal (Zero-waste lifestyle)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2">Air Travel (yearly)</label>
+                                <select class="w-full p-2 border rounded" name="airTravel" required>
+                                    <option value="">Select option</option>
+                                    <option value="frequent">Frequent (4+ flights/year)</option>
+                                    <option value="occasional">Occasional (1-3 flights/year)</option>
+                                    <option value="rare">Rare (Less than 1 flight/year)</option>
+                                    <option value="none">None</option>
+                                </select>
+                            </div>
+                            
+                            <button type="submit" class="w-full bg-primary text-Red-700 text-xl font-bold py-2 px-4 rounded hover:bg-opacity-90 transition duration-300">Calculate</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div data-aos="fade-left">
+                    <div class="tool-card">
+                        <h3 class="text-xl font-semibold mb-4">Your Carbon Footprint Results</h3>
+                        <div id="carbonResult" class="min-h-[300px]">
+                            <div class="flex items-center justify-center h-full">
+                                <p class="text-gray-500 text-center">Fill the form to calculate your carbon footprint</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Issues Gallery -->
+    <section class="gallery-section" id="gallery">
+        <div class="container mx-auto">
+            <h2 class="section-title text-5xl text-dark">Social Issues Gallery</h2>
+            <p class="mb-8 text-gray-600">Explore how social issues impact disaster vulnerability and recovery</p>
+            
+            <div class="gallery-container">
+                <!-- Poverty -->
+                <div class="gallery-item" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1635929114944-8bab23b98e74?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxfHxQb3ZlcnR5fGVufDB8fHx8MTc2MzM5MzAzOHww&ixlib=rb-4.1.0&q=80&w=1080" alt="Poverty">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Poverty</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Unequal resource distribution, lack of education & economic opportunities</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Heightened vulnerability to disasters due to unsafe housing, limited resources for evacuation</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Social safety nets, inclusive economic growth, community empowerment</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pollution -->
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1495556650867-99590cea3657?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwxM3x8UG9sbHV0aW9ufGVufDB8fHx8MTc2MzM5MzA3N3ww&ixlib=rb-4.1.0&q=80&w=1080" alt="Pollution">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Pollution</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Industrial emissions, vehicular exhaust, improper waste disposal</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Respiratory diseases, contaminated water sources, ecosystem damage</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Stringent regulations, clean technology adoption, waste management</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Water Scarcity -->
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1571437436752-b39c74e5c501?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwzMnx8V2F0ZXIlMjBTY2FyY2l0eXxlbnwwfHx8fDE3NjMzOTMxMjF8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Water Scarcity">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Water Scarcity</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Climate change, overuse of groundwater, mismanagement of resources</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Crop failures, health crises, migration, conflicts over resources</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Water conservation, rainwater harvesting, sustainable agriculture</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slum Population -->
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1592715833087-52fd556efb3a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHw0fHxTbHVtJTIwUG9wdWxhdGlvbnxlbnwwfHx8fDE3NjMzOTMxNjl8MA&ixlib=rb-4.1.0&q=80&w=1080" alt="Slum Population">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Slum Population</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Rapid urbanization, housing shortages, rural-urban migration</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Increased risk from fires, floods, diseases; lack of emergency services</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Affordable housing, urban planning, slum upgradation projects</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Overcrowding -->
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1609056615012-27c81a0df7b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHwyNHx8T3ZlcmNyb3dkaW5nfGVufDB8fHx8MTc2MzM5MzE0OXww&ixlib=rb-4.1.0&q=80&w=1080" alt="Overcrowding">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Overcrowding</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Population growth, limited living spaces, economic inequality</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Rapid disease spread, difficult evacuations, strain on infrastructure</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Family planning, decentralized development, infrastructure investment</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Waste Mismanagement -->
+                <div class="gallery-item" data-aos="fade-up" data-aos-delay="500">
+                    <img src="https://images.unsplash.com/photo-1762805544167-cd8d12553e2b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjkwMjR8MHwxfHNlYXJjaHw2fHxXYXN0ZSUyME1pc21hbmFnZW1lbnR8ZW58MHx8fHwxNzYzMzkzMTgyfDA&ixlib=rb-4.1.0&q=80&w=1080" alt="Waste Mismanagement">
+                    <div class="gallery-content">
+                        <h3 class="font-bold text-xl mb-2">Waste Mismanagement</h3>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Cause</h4>
+                            <p class="text-gray-600">Lack of waste processing facilities, consumer culture, poor regulations</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold text-primary">Impact</h4>
+                            <p class="text-gray-600">Water pollution, disease outbreaks, blocked drainage leading to floods</p>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-primary">Prevention</h4>
+                            <p class="text-gray-600">Recycling programs, waste-to-energy plants, circular economy models</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <h2 class="section-title text-5xl text-dark text-center" data-aos="fade-up">Contact Us</h2>
+            <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">Have questions or need assistance? Get in touch with our disaster management experts.</p>
+            
+            <div class="contact-grid">
+                <!-- Contact Form -->
+                <div class="contact-form" data-aos="fade-right">
+                    <h3 class="text-xl font-semibold mb-6 text-dark">Send us a Message</h3>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Your Name</label>
+                            <input type="text" id="name" class="form-input" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="email">Your Email</label>
+                            <input type="email" id="email" class="form-input" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="inquiryType">Inquiry Type</label>
+                            <select id="inquiryType" class="form-select">
+                                <option value="feedback">Feedback</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="technical">Technical Support</option>
+                                <option value="partnership">Partnership</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea id="message" class="form-textarea" placeholder="Type your message here..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane mr-2"></i> SEND MESSAGE
+                        </button>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="contact-info" data-aos="fade-left">
+                    <h3 class="text-xl font-semibold mb-6 text-dark">Contact Information</h3>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Our Location</h4>
+                                <p>123 Disaster Management Centre, madhuban chowk, near tecnia institute of advance studies delhi-110023</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                           
+                            <div class="contact-text">
+                                <h4>Phone Number</h4>
+                                <p>+91 9868502992</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email Address</h4>
+                                <p>info@disastermanagement.org</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <h4 class="form-label mb-4">Follow Us</h4>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>DisasterMgmt</h3>
+                <p class="text-gray-300 mt-4">A comprehensive resource for understanding disasters, their impact on society, and measures for preparedness and prevention.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#hero">Home</a></li>
+                    <li><a href="#disasters">Disasters</a></li>
+                    <li><a href="#social-issues">Social Issues</a></li>
+                    <li><a href="#environment">Environment</a></li>
+                    <li><a href="#case-studies">Case Studies</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Resources</h3>
+                <ul class="footer-links">
+                    <li><a href="#quiz">Survival Quiz</a></li>
+                    <li><a href="#gallery">Study Materials</a></li>
+                    <li><a href="#">Emergency Contacts</a></li>
+                    <li><a href="#">Download App</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Subscribe</h3>
+                <p class="text-gray-300 mt-4 mb-4">Stay updated with our latest resources and disaster alerts.</p>
+                <form class="flex">
+                    <input type="email" placeholder="Your email" class="px-4 py-2 w-full focus:outline-none rounded-l-lg">
+                    <button type="submit" class="bg-primary text-white px-4 rounded-r-lg hover:bg-opacity-90 transition-colors">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Disaster Management. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot">
+        <div class="chatbot-toggle">
+            <i class="fas fa-comment"></i>
+        </div>
+        <div class="chatbot-container">
+            <div class="chatbot-header">
+                Disaster Management Assistant
+            </div>
+            <div class="chatbot-messages" id="chatbot-messages">
+                <div class="message bot">
+                    Hello! I'm your Disaster Management Assistant. How can I help you today? Try asking me about what to do during an earthquake or how population growth affects the environment.
+                </div>
+            </div>
+            <div class="chatbot-input-container">
+                <input type="text" class="chatbot-input" placeholder="Type your question here...">
+                <button class="chatbot-send"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
